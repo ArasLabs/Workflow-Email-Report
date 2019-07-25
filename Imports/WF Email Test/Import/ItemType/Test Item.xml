@@ -1,0 +1,91 @@
+﻿<AML>
+ <Item type="ItemType" id="3B85638E53BF431FB1633BE3DEF12AB3" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>TEST_ITEM</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs off</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>Test Item</name>
+  <Relationships>
+   <Item type="Property" id="DE593EDDC49747C980B447DE1B6EA13B" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>1</keyed_name_order>
+    <label xml:lang="en">Item Name</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3072</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>name</name>
+   </Item>
+   <Item type="View" id="AC7DCE230E534302BEFCAC2C220A6347" action="add">
+    <client>js</client>
+    <related_id keyed_name="Test Item" type="Form">9075798CDFB74A93BBAF6AE44409ED5F</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="ItemType Life Cycle" id="38D5FCDA2C2543D983534211016A4CC7" action="add">
+    <related_id keyed_name="Test LC" type="Life Cycle Map">0371E461F38245759C4B0F93D6A0ABA1</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+   <Item type="Allowed Workflow" id="F39879FB940A4A2494016BAAA06F77D5" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="Test WF" type="Workflow Map">01B1BD53EEF944D88C8DDCD37205048D</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+   <Item type="TOC Access" id="62CA6FA4F4504095A726909A54299BD0" action="add">
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+   <Item type="TOC View" id="499514EB4D5649C495680958FB2C3A34" action="add">
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+   <Item type="Can Add" id="782C7FB03083405B9A4BACB44D484879" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="F1FF4BB7D44E40BBA0E1B6F89EBC89FA" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="Default Access" type="Permission">9122CD065CF04141B8EFE263FC80BEA4</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+   <Item type="Item Report" id="EEA6578D285D4924B25436BAF1B4CBF6" action="add">
+    <related_id keyed_name="Workflow Process History 2" type="Report">3F4D84FDA00E4522A1819D929FD0F275</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test Item" type="ItemType" name="Test Item">3B85638E53BF431FB1633BE3DEF12AB3</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,54 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="0371E461F38245759C4B0F93D6A0ABA1" action="add">
+  <start_state keyed_name="Start" type="Life Cycle State">46B9CB7531264EED8BC9285EF67A6790</start_state>
+  <name>Test LC</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="67820E21F0454898BB3C9C7C721ED586" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="Test LC" type="Life Cycle Map">0371E461F38245759C4B0F93D6A0ABA1</source_id>
+    <x>498</x>
+    <y>52</y>
+    <name>End</name>
+   </Item>
+   <Item type="Life Cycle State" id="823D004691E74B8E94D5831B7A4F7911" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="Test LC" type="Life Cycle Map">0371E461F38245759C4B0F93D6A0ABA1</source_id>
+    <x>249</x>
+    <y>151</y>
+    <name>In Process</name>
+   </Item>
+   <Item type="Life Cycle State" id="46B9CB7531264EED8BC9285EF67A6790" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test LC" type="Life Cycle Map">0371E461F38245759C4B0F93D6A0ABA1</source_id>
+    <x>19</x>
+    <y>20</y>
+    <name>Start</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="CFFF6FC8B6224FA0A9AAD6A30B8DD2FC" action="add">
+    <from_state keyed_name="Start" type="Life Cycle State">46B9CB7531264EED8BC9285EF67A6790</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test LC" type="Life Cycle Map">0371E461F38245759C4B0F93D6A0ABA1</source_id>
+    <to_state keyed_name="In Process" type="Life Cycle State">823D004691E74B8E94D5831B7A4F7911</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="E834AE18FBA644B88E11C6EC12F3CF33" action="add">
+    <from_state keyed_name="In Process" type="Life Cycle State">823D004691E74B8E94D5831B7A4F7911</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</role>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="Test LC" type="Life Cycle Map">0371E461F38245759C4B0F93D6A0ABA1</source_id>
+    <to_state keyed_name="End" type="Life Cycle State">67820E21F0454898BB3C9C7C721ED586</to_state>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
