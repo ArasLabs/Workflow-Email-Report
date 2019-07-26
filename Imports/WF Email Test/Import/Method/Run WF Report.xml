@@ -6,12 +6,12 @@ Innovator inn = this.getInnovator();
 Item result = inn.newItem();
 System.Diagnostics.Debugger.Break();
 result = inn.applyAML(
-"<AML><Item type=\"Method\" action=\"Run Report\">"+ 
+"<Item type=\"Method\" action=\"Run Report\">"+ 
 "<report_name>Workflow Process History 2</report_name>"+
 "<AML>"+  
 "<Item typeId=\"261EAC08AE9144FC95C49182ACE0D3FE\" id=\""+ this.getProperty("wf_id") +"\" />"+
 "</AML>"+
-"</Item></AML>");
+"</Item>");
 this.setProperty("result", result.getProperty("theHtml"));
 //System.Diagnostics.Debugger.Break();
 return result;]]></method_code>
