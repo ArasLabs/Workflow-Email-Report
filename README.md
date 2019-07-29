@@ -1,6 +1,6 @@
 # Workflow Report Email
 
-![](wfr_sample.png)
+![](./Screenshots/wfr_sample.png)
 
 ###### WF Report Screenshot
 
