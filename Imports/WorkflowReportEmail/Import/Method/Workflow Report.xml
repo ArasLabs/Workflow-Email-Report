@@ -1,0 +1,91 @@
+﻿<AML>
+ <Item type="Method" id="6EB8989D346D4A019F7323BE328AB01E" action="add">
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[//Item Definitions 
+Innovator inn = this.getInnovator();
+//get ID from Email Query
+string itemID = this.getID();
+//Get Workflow
+Item workflow = inn.newItem("Workflow","get"); 
+workflow.setProperty("source_id", itemID);
+workflow.setAttribute("select", "state, name, related_id(name, related_id)"); 
+//Get Workflow Process
+Item workflowProcess = workflow.createRelatedItem("Workflow Process","get"); 
+workflowProcess.setAttribute("select", "name, id"); 
+//Get WFP Activity
+Item workflowProcessActivity = workflowProcess.createRelationship("Workflow Process Activity","get"); 
+workflowProcessActivity.setAttribute("select", "related_id");
+//Get Actvity
+Item activity = workflowProcessActivity.createRelatedItem("Activity", "get"); 
+activity.setPropertyCondition("state", "ne");
+activity.setProperty("state", "Pending");
+activity.setAttribute("select", "name,related_id(name)");
+//Get Assignements
+Item activityAssignment = activity.createRelationship("Activity Assignment", "get");
+activityAssignment.setAttribute("select", "id, related_id");
+//Get Identities Assigned
+Item identity = activityAssignment.createRelatedItem("Identity", "get");
+identity.setAttribute("select", "keyed_name"); 
+//Run Query for existing workflow
+workflow = workflow.apply(); 
+
+Item WFP = workflow.getItemsByXPath("//Item[@type='Workflow Process']");
+string wfpID = WFP.getItemByIndex(0).getID();
+
+//Build and run query for report
+Item qryItem = inn.newItem();
+qryItem.loadAML(
+        "<Item type=\"Workflow Process\" id=\"" + wfpID +
+        "\" initial_action=\"get\" action=\"do_l10n\" select=\"active_date, closed_date, state, name, description, created_by_id\" >" +
+        "<created_by_id>" +
+        "<Item type=\"User\" select=\"first_name,last_name\" action=\"get\">" +
+        "<Relationships>" +
+        "<Item type=\"Alias\" action=\"get\" select=\"related_id(name)\"/>" +
+        "</Relationships>" +
+        "</Item>" +
+        "</created_by_id>" +
+        "<Relationships>" +
+        "<Item type=\"Workflow Process Activity\" action=\"get\" select=\"related_id\">" +
+        "<related_id>" +
+        "<Item type=\"Activity\" action=\"get\" select=\"label,name,state,active_date\">" +
+        "<and>" +
+        "<state condition=\"ne\">Pending</state>" +
+        "<or>" +
+        "<is_start condition=\"ne\">1</is_start>" +
+        "<is_auto condition=\"ne\">1</is_auto>" +
+        "</or>" +
+        "<or>" +
+        "<is_end condition=\"ne\">1</is_end>" +
+        "<is_auto condition=\"ne\">1</is_auto>" +
+        "</or>" +
+        "</and>" +
+        "<Relationships>" +
+        "<Item type=\"Activity Assignment\" action=\"get\" select=\"closed_by, is_disabled, closed_on, comments, path, related_id(name)\" >" +
+        "<closed_by>" +
+        "<Item type=\"User\" select=\"first_name,last_name\" action=\"get\">" +
+        "<Relationships>" +
+        "<Item type=\"Alias\" action=\"get\" select=\"related_id(name)\"/>" +
+        "</Relationships>" +
+        "</Item>" +
+        "</closed_by>" +
+        "</Item>" +
+        "</Relationships>" +
+        "</Item>" +
+        "</related_id>" +
+        "</Item>" +
+        "</Relationships>" +
+        "</Item>");
+Item resultItem = qryItem.apply();
+
+//Apply Report style sheet
+Item report = inn.getItemByKeyedName("Report", "Workflow Process History");
+string style = report.getProperty("xsl_stylesheet");
+string html = resultItem.applyStylesheet(style, "text");
+Item res = inn.newItem("Test Item");
+res.setProperty("theHtml", html);
+return res;
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>Workflow Report</name>
+ </Item>
+</AML>

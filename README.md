@@ -1,9 +1,13 @@
-# Workflow Report Server Email
+# Workflow Report Email
 
-The Workflow Report Server Email project adds a server-side version of the standard Workflow Report and an email template to allow this report to be attached to a server event such as a workflow assignment.
+![](wfr_sample.png)
+
+###### WF Report Screenshot
+
+The Workflow Report Email project adds a server-side version of the standard Workflow Report Method and an email template to allow this report to be attached to a server event such as a workflow assignment.
 
 #### How it works
-?
+This project adds an Email template to run a Workflow Report Method to get the current input item id and the attached workflow and then output the resulting report into an email. It is used by attaching that email template to a workflow activity that will then send the email at the specified trigger. This requires Aras Innovator to be setup to send emails and the account listed on the email to have a valid email address. 
 
 ## History
 
@@ -38,7 +42,7 @@ Project | Aras
 4. Enter the package name in the TargetRelease field.
   * Optional: Enter a description in the Description field.
 5. Enter the path to your local `..\Workflow-Report-Email\Imports\imports.mf` file in the Manifest File field.
-6. Select **???** in the Available for Import field.
+6. Select **aras.labs.WorkflowReportEmail** in the Available for Import field.
 7. Select Type = **Merge** and Mode = **Thorough Mode**.
 8. Click **Import** in the top left corner.
 9. Close the Aras Package Import tool.
@@ -48,7 +52,12 @@ You are now ready to login to Aras and try out Automatic Workflow Assignments.
 ## Usage
 
 1. Log in to Aras as admin.
-2. 
+2. (Optional) Open Email Template “Workflow Report Email”, set sender to identity of choice, and save
+3. Open Workflow Map of choice
+4. Select Activity you wish to send email and the Notifications tab
+5. Pick the email and set the event and target(s)
+6. Repeat for any other Activities
+7. Save Workflow Map and test  
 
 ## Contributing
 
