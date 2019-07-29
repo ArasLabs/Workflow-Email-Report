@@ -9,7 +9,7 @@ The Workflow Report Email project adds a Workflow Report Method and an Email tem
 #### How it works
 This project adds an email template to run a workflow report method to get the current input item id and the attached workflow and then output the resulting report into an email. It is used by attaching that email template to a workflow activity that will then send the email at the specified trigger. This requires Aras Innovator to be setup to send emails and the *from account* listed on the email template to have a valid email address. 
 
-<u>Note:</u> The default report settings will only display closed items and will not cycle through subflows. (Example: the above screenshot is sitting at Activity C; if the email were sent from activity A, the email would only display the header with no information.) The report settings can be changed by altering the method code.
+>Note: The default report settings will only display closed items and will not cycle through subflows. (Example: the above screenshot is sitting at Activity C; if the email were sent from activity A, the email would only display the header with no information.) The report settings can be changed by altering the method code.
 
 ## History
 
