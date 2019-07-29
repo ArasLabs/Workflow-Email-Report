@@ -4,10 +4,12 @@
 
 ###### WF Report Screenshot
 
-The Workflow Report Email project adds a server-side version of the standard Workflow Report Method and an email template to allow this report to be attached to a server event such as a workflow assignment.
+The Workflow Report Email project adds a Workflow Report Method and an Email template to allow this report to be attached to a server event such as a workflow assignment.
 
 #### How it works
-This project adds an Email template to run a Workflow Report Method to get the current input item id and the attached workflow and then output the resulting report into an email. It is used by attaching that email template to a workflow activity that will then send the email at the specified trigger. This requires Aras Innovator to be setup to send emails and the account listed on the email to have a valid email address. 
+This project adds an email template to run a workflow report method to get the current input item id and the attached workflow and then output the resulting report into an email. It is used by attaching that email template to a workflow activity that will then send the email at the specified trigger. This requires Aras Innovator to be setup to send emails and the *from account* listed on the email template to have a valid email address. 
+
+<u>Note:</u> The default report settings will only display closed items and will not cycle through subflows. (Example: the above screenshot is sitting at Activity C; if the email were sent from activity A, the email would only display the header with no information.) The report settings can be changed by altering the method code.
 
 ## History
 
@@ -19,7 +21,7 @@ Release | Notes
 
 Project | Aras
 --------|------
-[v1.0.0](https://github.com/ArasLabs/Workflow-Report-Email/releases/tag/v1.0.0) | 11.15, 12.0+ 
+[v1.0.0](https://github.com/ArasLabs/Workflow-Report-Email/releases/tag/v1.0.0) | 11.0+, 12.0+ 
 
 ## Installation
 
@@ -31,7 +33,7 @@ Project | Aras
 1. Aras Innovator installed
 2. Aras Package Import tool
 3. Workflow Report Email import package
-4. Aras set up to send emails (see documentation)
+4. Aras set up to send emails (see Aras documentation)
 
 ### Install Steps
 
