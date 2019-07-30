@@ -8,30 +8,15 @@
 */
 
 Innovator inn = this.getInnovator();
-//get ID from Email Query
-string itemID = this.getID();
-//Get Workflow
+string contextItemID = this.getID();
+
+// Get the Workflow Process for the context item
 Item workflow = inn.newItem("Workflow","get"); 
-workflow.setProperty("source_id", itemID);
-workflow.setAttribute("select", "state, name, related_id(name, related_id)"); 
-//Get Workflow Process
-Item workflowProcess = workflow.createRelatedItem("Workflow Process","get"); 
-workflowProcess.setAttribute("select", "name, id"); 
-//Get WFP Activity
-Item workflowProcessActivity = workflowProcess.createRelationship("Workflow Process Activity","get"); 
-workflowProcessActivity.setAttribute("select", "related_id");
-//Get Actvity
-Item activity = workflowProcessActivity.createRelatedItem("Activity", "get"); 
-activity.setPropertyCondition("state", "ne");
-activity.setProperty("state", "Pending");
-activity.setAttribute("select", "name,related_id(name)");
-//Get Assignements
-Item activityAssignment = activity.createRelationship("Activity Assignment", "get");
-activityAssignment.setAttribute("select", "id, related_id");
-//Get Identities Assigned
-Item identity = activityAssignment.createRelatedItem("Identity", "get");
-identity.setAttribute("select", "keyed_name"); 
-//Run Query for existing workflow
+workflow.setProperty("source_id", contextItemID);
+workflow.setAttribute("select", "state, name, related_id"); 
+
+Item relatedProcess = workflow.createRelatedItem("Workflow Process","get"); 
+relatedProcess.setAttribute("select", "id"); 
 workflow = workflow.apply(); 
 
 Item WFP = workflow.getItemsByXPath("//Item[@type='Workflow Process']");
