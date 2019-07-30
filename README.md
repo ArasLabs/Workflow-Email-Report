@@ -14,13 +14,13 @@ This project adds an email template to run a workflow report method to get the c
 
 Release | Notes
 --------|--------
-[v1.0.0](https://github.com/ArasLabs/Workflow-Email-Report/releases/tag/v1.0.0) | First release 
+[v1.0.0](https://github.com/ArasLabs/workflow-email-report/releases/tag/v1.0.0) | First release 
 
 #### Supported Aras Versions
 
 Project | Aras
 --------|------
-[v1.0.0](https://github.com/ArasLabs/Workflow-Email-Report/releases/tag/v1.0.0) | 11.0+, 12.0+ 
+[v1.0.0](https://github.com/ArasLabs/workflow-email-report/releases/tag/v1.0.0) | 11.0+, 12.0+ 
 
 ## Installation
 
