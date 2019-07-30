@@ -134,7 +134,7 @@ For more information on contributing to this project, another Aras Labs project,
 
 ## Credits
 
-Original Aras community project written by Sam Poe at Aras Corp. @sampoearas
+Created by Sam Poe for Aras Labs. @sampoearas
 
 ## License
 
