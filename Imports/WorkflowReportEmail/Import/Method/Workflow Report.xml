@@ -23,50 +23,54 @@ workflow = workflow.apply();
 Item workflowProcess = workflow.getItemsByXPath("//Item[@type='Workflow Process']").getItemByIndex(0);
 string workflowProcessID = workflowProcess.getID();
 
-//Build and run query for report
-Item qryItem = inn.newItem();
-qryItem.loadAML(
-        "<Item type=\"Workflow Process\" id=\"" + wfpID +
-        "\" initial_action=\"get\" action=\"do_l10n\" select=\"active_date, closed_date, state, name, description, created_by_id\" >" +
-        "<created_by_id>" +
-        "<Item type=\"User\" select=\"first_name,last_name\" action=\"get\">" +
-        "<Relationships>" +
-        "<Item type=\"Alias\" action=\"get\" select=\"related_id(name)\"/>" +
-        "</Relationships>" +
-        "</Item>" +
-        "</created_by_id>" +
-        "<Relationships>" +
-        "<Item type=\"Workflow Process Activity\" action=\"get\" select=\"related_id\">" +
-        "<related_id>" +
-        "<Item type=\"Activity\" action=\"get\" select=\"label,name,state,active_date\">" +
-        "<and>" +
-        "<state condition=\"ne\">Pending</state>" +
-        "<or>" +
-        "<is_start condition=\"ne\">1</is_start>" +
-        "<is_auto condition=\"ne\">1</is_auto>" +
-        "</or>" +
-        "<or>" +
-        "<is_end condition=\"ne\">1</is_end>" +
-        "<is_auto condition=\"ne\">1</is_auto>" +
-        "</or>" +
-        "</and>" +
-        "<Relationships>" +
-        "<Item type=\"Activity Assignment\" action=\"get\" select=\"closed_by, is_disabled, closed_on, comments, path, related_id(name)\" >" +
-        "<closed_by>" +
-        "<Item type=\"User\" select=\"first_name,last_name\" action=\"get\">" +
-        "<Relationships>" +
-        "<Item type=\"Alias\" action=\"get\" select=\"related_id(name)\"/>" +
-        "</Relationships>" +
-        "</Item>" +
-        "</closed_by>" +
-        "</Item>" +
-        "</Relationships>" +
-        "</Item>" +
-        "</related_id>" +
-        "</Item>" +
-        "</Relationships>" +
-        "</Item>");
-Item resultItem = qryItem.apply();
+// Build the AML query to get the data for the report
+// Note that this AML will retrieve activities that are not Pending, and will only
+// retrieve automatic activities if they are the start or end activity in the workflow.
+// This is because pending and auto activities don't have signoffs to show.
+string aml = "<AML>" +
+    "    <Item type='Workflow Process' id='" + workflowProcessID + "' initial_action='get' action='do_l10n' select='active_date,closed_date,state,name,description,created_by_id'>" +
+    "        <created_by_id>" +
+    "            <Item type='User' select='first_name,last_name' action='get'>" +
+    "                <Relationships>" +
+    "                    <Item type='Alias' action='get' select='related_id(name)'/>" +
+    "                </Relationships>" +
+    "            </Item>" +
+    "        </created_by_id>" +
+    "        <Relationships>" +
+    "            <Item type='Workflow Process Activity' action='get' select='related_id'>" +
+    "                <related_id>" +
+    "                    <Item type='Activity' action='get' select='label,name,state,active_date'>" +
+    "                        <and>" +
+    "                            <state condition='ne'>Pending</state>" +
+    "                            <or>" +
+    "                                <is_start condition='ne'>1</is_start>" +
+    "                                <is_auto condition='ne'>1</is_auto>" +
+    "                            </or>" +
+    "                            <or>" +
+    "                                <is_end condition='ne'>1</is_end>" +
+    "                                <is_auto condition='ne'>1</is_auto>" +
+    "                            </or>" +
+    "                        </and>" +
+    "                        <Relationships>" +
+    "                            <Item type='Activity Assignment' action='get' select='closed_by,is_disabled,closed_on,comments,path,related_id(name)'>" +
+    "                                <closed_by>" +
+    "                                    <Item type='User' select='first_name,last_name' action='get'>" +
+    "                                        <Relationships>" +
+    "                                            <Item type='Alias' action='get' select='related_id(name)'/>" +
+    "                                        </Relationships>" +
+    "                                    </Item>" +
+    "                                </closed_by>" +
+    "                            </Item>" +
+    "                        </Relationships>" +
+    "                    </Item>" +
+    "                </related_id>" +
+    "            </Item>" +
+    "        </Relationships>" +
+    "    </Item>" +
+    "</AML>";
+    
+// Apply the AML query to get the report data
+Item signoffItems = inn.applyAML(aml);
 
 //Apply Report style sheet
 Item report = inn.getItemByKeyedName("Report", "Workflow Process History");
