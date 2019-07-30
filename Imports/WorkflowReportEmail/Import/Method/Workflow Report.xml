@@ -19,8 +19,9 @@ Item relatedProcess = workflow.createRelatedItem("Workflow Process","get");
 relatedProcess.setAttribute("select", "id"); 
 workflow = workflow.apply(); 
 
-Item WFP = workflow.getItemsByXPath("//Item[@type='Workflow Process']");
-string wfpID = WFP.getItemByIndex(0).getID();
+// Get the id of the workflow process
+Item workflowProcess = workflow.getItemsByXPath("//Item[@type='Workflow Process']").getItemByIndex(0);
+string workflowProcessID = workflowProcess.getID();
 
 //Build and run query for report
 Item qryItem = inn.newItem();
