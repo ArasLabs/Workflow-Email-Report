@@ -79,6 +79,49 @@ The steps for using this project vary depending on the configuration you chose i
 
 >Note: It's important to create new items for testing your email configuration. Any changes to your workflow will not affect items that are already in process.
 
+## Testing Options
+
+Don't have an SMTP server configured, or you don't want to spam your users with test emails? Here are two options for testing this project in a dev environment without a full SMTP server.
+
+### 1. Email Debug Option
+
+The `InnovatorServerConfig.xml` file in the root of every Aras Innovator installation contains an operating parameter for email debugging. Enabling this option will write all outgoing emails to files in `Innovator\Server\temp\` by default.
+
+1. Open `InnovatorServerConfig.xml` for editing.
+2. Replace `<disabled_operating_parameter key="email_debug_option" value="file"/>` with `<operating_parameter key="email_debug_option" value="file"/>`.
+3. Follow the Usage Steps above to trigger an outgoing email.
+4. Open up the new file created in `Innovator\Server\temp\`. It should look something like this:
+
+```
+TO: test@aras.fake
+FROM: "Innovator Admin" <test@aras.fake>
+SUBJECT: Workflow Report
+<html>
+  ... email content ...
+</html>
+```
+
+To disable email debugging, simply revert the change to the operating parameter.
+
+### 2. Lightweight SMTP Receiver Option
+
+Another option for testing this project without a complete SMTP server is to use a lightweight SMTP Receiver like [Papercut](https://github.com/ChangemakerStudios/Papercut). Here's how:
+
+1. Download and install [the latest release of Papercut](https://github.com/ChangemakerStudios/Papercut/releases).
+2. Open the Papercut client and click **Options** in the toolbar.
+
+    ![Papercut Options](Screenshots/options.png)
+
+3. Choose an IP address to use and leave the default port. Save your options.
+4. Open `InnovatorServerConfig.xml` for editing.
+5. Set the IP address you chose in the Mail tag's SMTPServer attribute: `<Mail SMTPServer="127.0.0.1"/>`.
+6. Save your changes.
+7. Follow the Usage Steps above to trigger an outgoing email. 
+
+The outgoing email should appear in Papercut and look something like this:
+
+![Papercut Result](Screenshots/papercut.png)
+
 ## Contributing
 
 1. Fork it!
