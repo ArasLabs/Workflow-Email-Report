@@ -49,7 +49,7 @@ Project | Aras
 8. Click **Import** in the top left corner.
 9. Close the Aras Package Import tool.
 
-You are now ready to login to Aras and try out Automatic Workflow Assignments.
+You are now ready to login to Aras and configure your workflows with the new email notification.
 
 ## Usage
 
