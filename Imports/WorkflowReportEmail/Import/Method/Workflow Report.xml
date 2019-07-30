@@ -1,4 +1,4 @@
-﻿<AML>
+<AML>
  <Item type="Method" id="6EB8989D346D4A019F7323BE328AB01E" action="add">
   <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
   <method_code><![CDATA[//Item Definitions 
@@ -86,6 +86,6 @@ res.setProperty("theHtml", html);
 return res;
 ]]></method_code>
   <method_type>C#</method_type>
-  <name>Workflow Report</name>
+  <name>labs_GetWorkflowSignoffReport</name>
  </Item>
 </AML>
