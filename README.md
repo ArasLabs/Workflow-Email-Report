@@ -51,15 +51,33 @@ Project | Aras
 
 You are now ready to login to Aras and configure your workflows with the new email notification.
 
-## Usage
+### Configuring Your Workflow
 
 1. Log in to Aras as admin.
-2. (Optional) Open Email Template “Workflow Report Email”, set sender to identity of choice, and save
-3. Open Workflow Map of choice
-4. Select Activity you wish to send email and the Notifications tab
-5. Pick the email and set the event and target(s)
-6. Repeat for any other Activities
-7. Save Workflow Map and test  
+2. Navigate to **Administration > Notification > E-Mail Message**.
+3. Open the "Workflow Report Email" template.
+4. Set the "From User" property to the Aras User you want to appear as the email sender.
+5. Save and close the Email item.
+6. Navigate to **Administration > Workflow Maps** and open the Workflow you want to edit.
+7. In the Workflow Map editor, select the Activity you want to trigger the email.
+8. Select the **Notifications** tab.
+9. Click the **Select Items** (12.0+) or **Pick Related** (11.0+) button and choose the "Workflow Report Email" item from the search dialog.
+10. In the **Event** column of the relationship grid, select the event you want to trigger the email.
+11. In the **Target** column, select who you want to receive the email. 
+    * You can find out more about these options by selecting **Help** (12.0+) or **Help > Just Ask Innovator** (11.0+) from the main menu and searching for "email" or "workflow".
+13. Repeat steps 7-11 for any other Activities you want to configure with the email notification.
+14. Save the Workflow Map.
+
+## Usage
+
+The steps for using this project vary depending on the configuration you chose in the "Configuring Your Workflow" section above. Here's an example where we configured the ECN workflow to send an email when the "ECN Planning" Activity is activated.
+
+1. Create a new ECN.
+2. Vote "submit" on the new ECN to advance it from the "Submit ECN" activity to "ECN Planning".
+3. Check your email, log folder, or SMTP receiver to confirm the email was sent.
+    * This step depends on your SMTP configuration. Check out the "Testing Options" section below for more information on testing your emails in a local/non-production environment.
+
+>Note: It's important to create new items for testing your email configuration. Any changes to your workflow will not affect items that are already in process.
 
 ## Contributing
 
