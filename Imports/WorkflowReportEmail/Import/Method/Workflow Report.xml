@@ -72,13 +72,15 @@ string aml = "<AML>" +
 // Apply the AML query to get the report data
 Item signoffItems = inn.applyAML(aml);
 
-//Apply Report style sheet
+// Apply the report's XSL stylesheet to transform the report data to HTML
 Item report = inn.getItemByKeyedName("Report", "Workflow Process History");
 string style = report.getProperty("xsl_stylesheet");
-string html = resultItem.applyStylesheet(style, "text");
-Item res = inn.newItem("Test Item");
-res.setProperty("theHtml", html);
-return res;
+string html = signoffItems.applyStylesheet(style, "text");
+
+// Add the HTML to an item we can return to the email notification
+Item reportResult = inn.newItem("Workflow Signoff Results");
+reportResult.setProperty("report_html", html);
+return reportResult;
 ]]></method_code>
   <method_type>C#</method_type>
   <name>labs_GetWorkflowSignoffReport</name>
