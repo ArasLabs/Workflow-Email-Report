@@ -32,7 +32,8 @@ Project | Aras
 1. Aras Innovator installed
 2. Aras Package Import tool
 3. Workflow Report Email import package
-4. Aras set up to send emails (see Aras documentation)
+4. The target Aras instance must have an SMTP server configured. See Testing Options below for testing the project without a full SMTP server configured.
+5. Users must have email addresses in the target Aras database. 
 
 ### Install Steps
 
